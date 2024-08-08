@@ -1,7 +1,8 @@
-import express from "express";
+import { Router } from "express";
 
-export const privateRouter = express.Router();
+import { privateController } from "../controllers/private-controller";
+import { ensureAdmin, ensureAuth } from "../middlewares/auth-middleware";
 
-privateRouter.get("/", (req, res) => {
-  res.send("Hello, TypeScript Express!");
-});
+export const privateRouter = Router();
+
+privateRouter.get("/users", ensureAuth, ensureAdmin, privateController.users);
