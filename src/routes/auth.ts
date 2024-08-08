@@ -1,7 +1,8 @@
-import express from "express";
+import { Router } from "express";
 
-export const authRouter = express.Router();
+import { authController } from "../controllers/auth-controller";
 
-authRouter.get("/", (req, res) => {
-  res.send("Hello, TypeScript Express!");
-});
+export const authRouter = Router();
+
+authRouter.post("/register", authController.register);
+authRouter.post("/login", authController.login);
